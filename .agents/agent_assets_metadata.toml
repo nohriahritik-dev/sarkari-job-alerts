@@ -1,0 +1,8 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "kt0_q0faG6LFMRl_mSe52"
+uri = "file://sarkari-job-alerts.zip"
+type = "unspecified"
+title = "Sarkari Job Alerts — Full Source Code (2.7 MB)"

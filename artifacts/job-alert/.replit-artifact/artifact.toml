@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "Job Alert - Government Jobs"
+version = "1.0.0"
+id = "artifacts/job-alert"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 22358
+
+[services.development]
+run = "pnpm --filter @workspace/job-alert run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/job-alert", "run", "build" ]
+publicDir = "artifacts/job-alert/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "22358"
+BASE_PATH = "/"

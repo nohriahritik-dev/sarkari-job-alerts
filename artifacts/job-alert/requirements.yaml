@@ -1,0 +1,18 @@
+packages:
+  "framer-motion": "For page transitions, smooth list reveals, and micro-interactions"
+  "date-fns": "For precise and readable date formatting and duration calculations"
+  "clsx": "For constructing conditional Tailwind class names"
+  "tailwind-merge": "For safely merging Tailwind class conflicts"
+
+images:
+  - path: "artifacts/job-alert/public/images/hero-bg.png"
+    description: "Abstract geometric background in deep dark navy blue with glowing saffron orange accents and subtle grid patterns, representing a modern technology portal"
+    aspect_ratio: "16:9"
+  - path: "artifacts/job-alert/public/images/empty-state.png"
+    description: "Minimalist illustration of an empty folder or magnifying glass floating in dark navy space with subtle orange highlights"
+    aspect_ratio: "1:1"
+
+notes:
+  - "Assuming generated API hooks from @workspace/api-client-react are available and return data directly as T"
+  - "Dates in API responses are strings, parsing them on the frontend using date-fns"
+  - "Bookmarks are persisted using localStorage to avoid backend dependencies for user state"
