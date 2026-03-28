@@ -118,24 +118,81 @@ export default function Home() {
             className="grid grid-cols-2 md:grid-cols-5 gap-4 max-w-5xl mx-auto mt-16"
           >
             {[
-              { label: "Active Jobs", value: countData?.count ? countData.count.toLocaleString("en-IN") : "—", icon: Briefcase },
+              { 
+                label: "Active Jobs", 
+                value: countData?.count ? countData.count.toLocaleString("en-IN") : "—", 
+                icon: Briefcase,
+                href: "/jobs"
+              },
               {
                 label: "Total Vacancies",
                 value: countData?.totalVacancies
                   ? countData.totalVacancies.toLocaleString("en-IN")
                   : "—",
                 icon: Users,
+                href: "/jobs",
+                onClick: () => {
+                  alert("Browse the jobs list to find the latest massive recruitment drives with the most vacancies!");
+                }
               },
-              { label: "Sectors", value: categories?.length ? `${categories.length}` : "24", icon: Filter },
-              { label: "Fastest Notification", value: "Instant", icon: Bell },
-              { label: "Verified Sources", value: "100%", icon: CheckCircle2 },
-            ].map((stat, i) => (
-              <div key={i} className="hero-glass p-4 rounded-2xl flex flex-col items-center justify-center text-center">
-                <stat.icon className="w-6 h-6 text-primary mb-2" />
-                <span className="text-2xl font-bold text-white">{stat.value}</span>
-                <span className="text-xs text-muted-foreground uppercase tracking-wider font-medium">{stat.label}</span>
-              </div>
-            ))}
+              { 
+                label: "Sectors", 
+                value: categories?.length ? `${categories.length}` : "24", 
+                icon: Filter,
+                href: "#sectors",
+                onClick: (e: React.MouseEvent) => {
+                  e.preventDefault();
+                  document.getElementById('sectors')?.scrollIntoView({ behavior: 'smooth' });
+                }
+              },
+              { 
+                label: "Fastest Notification", 
+                value: "Instant", 
+                icon: Bell,
+                href: "https://play.google.com/store/apps/details?id=com.sarkarialert",
+                external: true
+              },
+              { 
+                label: "Verified Sources", 
+                value: "100%", 
+                icon: CheckCircle2,
+                href: "/jobs"
+              },
+            ].map((stat, i) => {
+              const innerContent = (
+                <>
+                  <stat.icon className="w-6 h-6 text-primary mb-2" />
+                  <span className="text-2xl font-bold text-white">{stat.value}</span>
+                  <span className="text-xs text-muted-foreground uppercase tracking-wider font-medium">{stat.label}</span>
+                </>
+              );
+
+              const className = "hero-glass p-4 rounded-2xl flex flex-col items-center justify-center text-center cursor-pointer hover:bg-white/10 hover:scale-[1.03] transition-all duration-300 active:scale-95";
+
+              if (stat.external) {
+                return (
+                  <a key={i} href={stat.href} target="_blank" rel="noopener noreferrer" className={className}>
+                    {innerContent}
+                  </a>
+                );
+              }
+              
+              if (stat.href.startsWith('#')) {
+                return (
+                  <a key={i} href={stat.href} onClick={stat.onClick} className={className}>
+                    {innerContent}
+                  </a>
+                );
+              }
+
+              return (
+                <Link key={i} href={stat.href} onClick={stat.onClick as any}>
+                  <a className={className}>
+                    {innerContent}
+                  </a>
+                </Link>
+              );
+            })}
           </motion.div>
 
           {/* Last updated note */}
@@ -167,7 +224,7 @@ export default function Home() {
       )}
 
       {/* Categories */}
-      <section className="py-16 bg-card/30 border-y border-border">
+      <section id="sectors" className="py-16 bg-card/30 border-y border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-end justify-between mb-10">
             <div>

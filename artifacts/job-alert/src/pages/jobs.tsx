@@ -252,10 +252,6 @@ export default function JobsPage() {
                       <JobCard key={job.id} job={job} />
                     ))}
                   </div>
-                  {/* Ad after 3 */}
-                  {jobsData.jobs.length > 3 && (
-                    <AdUnit slot={AD_SLOTS.banner} size="leaderboard" format="horizontal" />
-                  )}
                   {/* Next 3 */}
                   {jobsData.jobs.length > 3 && (
                     <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
@@ -275,10 +271,6 @@ export default function JobsPage() {
                         <JobCard key={job.id} job={job} />
                       ))}
                     </div>
-                  )}
-                  {/* Ad after 9 */}
-                  {jobsData.jobs.length > 9 && (
-                    <AdUnit slot={AD_SLOTS.rectangle} size="rectangle" format="rectangle" />
                   )}
                   {/* Remaining cards */}
                   {jobsData.jobs.length > 9 && (

@@ -65,27 +65,31 @@ export function StickyAdBar() {
           <X className="w-3.5 h-3.5" />
         </button>
 
-        <div className="max-w-5xl mx-auto px-4 py-2 flex items-center justify-between gap-4">
-          <span className="text-[9px] uppercase tracking-widest font-semibold text-muted-foreground/50 shrink-0">
+        <div className="max-w-5xl mx-auto px-2 md:px-4 py-1.5 md:py-2 flex items-center justify-between gap-2 md:gap-4">
+          <span className="hidden md:inline text-[9px] uppercase tracking-widest font-semibold text-muted-foreground/50 shrink-0">
             Ad
           </span>
 
-          <div className="flex-1 overflow-hidden relative min-h-[60px]">
+          <div className="flex-1 overflow-hidden relative h-[50px] md:h-[60px]">
             {/* Visible fallback behind the ins */}
-            <div className="absolute inset-0 flex items-center justify-center gap-3 rounded-lg bg-muted/50 border border-dashed border-border pointer-events-none">
-              <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+            <div className="absolute inset-0 flex items-center justify-center gap-2 md:gap-3 rounded-lg bg-muted/50 border border-dashed border-border pointer-events-none px-2">
+              <div className="hidden md:flex w-8 h-8 rounded-lg bg-primary/10 items-center justify-center shrink-0">
                 <span className="text-primary text-xs font-bold">Ad</span>
               </div>
-              <div>
-                <p className="text-sm font-semibold text-foreground leading-none">Sponsored — Sticky Bottom Banner</p>
-                <p className="text-[10px] text-muted-foreground mt-0.5">728 × 60 · Google AdSense Test Unit</p>
+              <div className="truncate text-center md:text-left">
+                <p className="text-xs md:text-sm font-semibold text-foreground leading-none truncate">
+                  Sponsored — Sticky Ad
+                </p>
+                <p className="text-[9px] md:text-[10px] text-muted-foreground mt-1 truncate">
+                  Google AdSense Test Unit
+                </p>
               </div>
             </div>
 
             <ins
               ref={insRef}
-              className="adsbygoogle relative z-10"
-              style={{ display: "block", width: "100%", height: 60 }}
+              className="adsbygoogle relative z-10 block"
+              style={{ width: "100%", height: "100%" }}
               data-ad-client={PUB_ID}
               data-ad-slot="6300978111"
               data-ad-format="horizontal"

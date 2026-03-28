@@ -157,12 +157,7 @@ export default function JobDetailPage() {
         </div>
       </div>
 
-      {/* Leaderboard Ad — below job header */}
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-        <AdUnit slot={AD_SLOTS.banner} size="leaderboard" format="horizontal" />
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
         <div className="flex flex-col lg:flex-row gap-8">
           
           {/* Main Content */}
