@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 import {
@@ -278,7 +279,10 @@ export default function Home() {
           ) : closingSoon && closingSoon.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {closingSoon.slice(0, 4).map((job) => (
-                <JobCard key={job.id} job={job} />
+                <Fragment key={job.id}>
+                  <JobCard job={job} />
+                  <AdUnit slot={AD_SLOTS.native} size="inline" format="auto" />
+                </Fragment>
               ))}
             </div>
           ) : (
@@ -309,7 +313,10 @@ export default function Home() {
           ) : latestJobs?.jobs && latestJobs.jobs.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {latestJobs.jobs.map((job) => (
-                <JobCard key={job.id} job={job} />
+                <Fragment key={job.id}>
+                  <JobCard job={job} />
+                  <AdUnit slot={AD_SLOTS.native} size="inline" format="auto" />
+                </Fragment>
               ))}
             </div>
           ) : (

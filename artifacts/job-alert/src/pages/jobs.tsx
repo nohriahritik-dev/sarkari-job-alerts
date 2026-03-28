@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, Fragment } from "react";
 import { useLocation } from "wouter";
 import { Search, Filter, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { useGetJobs, useGetCategories, useGetStates } from "@workspace/api-client-react";
@@ -245,41 +245,13 @@ export default function JobsPage() {
                   </span>
                 </div>
 
-                <div className="space-y-6">
-                  {/* First 3 */}
-                  <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
-                    {jobsData.jobs.slice(0, 3).map((job) => (
-                      <JobCard key={job.id} job={job} />
-                    ))}
-                  </div>
-                  {/* Next 3 */}
-                  {jobsData.jobs.length > 3 && (
-                    <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
-                      {jobsData.jobs.slice(3, 6).map((job) => (
-                        <JobCard key={job.id} job={job} />
-                      ))}
-                    </div>
-                  )}
-                  {/* Ad after 6 */}
-                  {jobsData.jobs.length > 6 && (
-                    <AdUnit slot={AD_SLOTS.banner} size="leaderboard" format="horizontal" />
-                  )}
-                  {/* Next 3 */}
-                  {jobsData.jobs.length > 6 && (
-                    <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
-                      {jobsData.jobs.slice(6, 9).map((job) => (
-                        <JobCard key={job.id} job={job} />
-                      ))}
-                    </div>
-                  )}
-                  {/* Remaining cards */}
-                  {jobsData.jobs.length > 9 && (
-                    <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
-                      {jobsData.jobs.slice(9).map((job) => (
-                        <JobCard key={job.id} job={job} />
-                      ))}
-                    </div>
-                  )}
+                <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+                  {jobsData.jobs.map((job) => (
+                    <Fragment key={job.id}>
+                      <JobCard job={job} />
+                      <AdUnit slot={AD_SLOTS.native} size="inline" format="auto" />
+                    </Fragment>
+                  ))}
                 </div>
 
                 {/* Pagination */}
