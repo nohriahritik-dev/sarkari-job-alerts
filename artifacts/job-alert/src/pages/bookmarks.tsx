@@ -3,7 +3,7 @@ import { Link } from "wouter";
 import { Layout } from "@/components/layout";
 import { JobCard } from "@/components/job-card";
 import { useBookmarks } from "@/hooks/use-bookmarks";
-import { AdUnit } from "@/components/ad-unit";
+import { AdUnit, AD_SLOTS } from "@/components/ad-unit";
 
 export default function BookmarksPage() {
   const { bookmarks } = useBookmarks();
@@ -22,7 +22,7 @@ export default function BookmarksPage() {
         </div>
 
         {/* Top banner ad */}
-        <AdUnit slot="6300978111" size="leaderboard" format="horizontal" className="mb-8" />
+        <AdUnit slot={AD_SLOTS.banner} size="leaderboard" format="horizontal" className="mb-8" />
 
         {bookmarks.length > 0 ? (
           <>
@@ -33,7 +33,7 @@ export default function BookmarksPage() {
             </div>
             {bookmarks.length > 4 && (
               <>
-                <AdUnit slot="6300978111" size="leaderboard" format="horizontal" className="my-6" />
+                <AdUnit slot={AD_SLOTS.banner} size="leaderboard" format="horizontal" className="my-6" />
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                   {bookmarks.slice(4).map((job) => (
                     <JobCard key={job.id} job={job} />

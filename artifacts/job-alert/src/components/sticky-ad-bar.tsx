@@ -18,6 +18,7 @@ export function StickyAdBar() {
   const pushed = useRef(false);
   const [dismissed, setDismissed] = useState(false);
   const [visible, setVisible] = useState(false);
+  const dismissTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     const timer = setTimeout(() => setVisible(true), 1500);
@@ -33,18 +34,31 @@ export function StickyAdBar() {
     }
   }, [visible, dismissed]);
 
-  if (dismissed) return null;
+  // Dismiss for 60s then reappear
+  const handleDismiss = () => {
+    setDismissed(true);
+    dismissTimerRef.current = setTimeout(() => {
+      setDismissed(false);
+    }, 60 * 1000);
+  };
+
+  // Cleanup timer on unmount
+  useEffect(() => {
+    return () => {
+      if (dismissTimerRef.current) clearTimeout(dismissTimerRef.current);
+    };
+  }, []);
 
   return (
     <div
       className={cn(
         "fixed bottom-0 left-0 right-0 z-50 transition-transform duration-500",
-        visible ? "translate-y-0" : "translate-y-full"
+        visible && !dismissed ? "translate-y-0" : "translate-y-full"
       )}
     >
       <div className="relative bg-card border-t border-border shadow-2xl">
         <button
-          onClick={() => setDismissed(true)}
+          onClick={handleDismiss}
           className="absolute -top-8 right-2 p-1.5 rounded-t-lg bg-card border border-b-0 border-border text-muted-foreground hover:text-foreground transition-colors"
           aria-label="Close ad"
         >

@@ -6,7 +6,7 @@ import { Layout } from "@/components/layout";
 import { JobCard } from "@/components/job-card";
 import { LoadingSpinner } from "@/components/ui/loading";
 import { cn } from "@/lib/utils";
-import { AdUnit } from "@/components/ad-unit";
+import { AdUnit, AD_SLOTS } from "@/components/ad-unit";
 
 interface FilterPanelProps {
   search: string;
@@ -205,7 +205,7 @@ export default function JobsPage() {
                 <FilterPanel {...filterProps} />
               </div>
               {/* Sidebar Ad — 300×250 */}
-              <AdUnit slot="6300978111" size="rectangle" format="rectangle" />
+              <AdUnit slot={AD_SLOTS.rectangle} size="rectangle" format="rectangle" />
             </div>
           </aside>
 
@@ -230,6 +230,11 @@ export default function JobsPage() {
               <LoadingSpinner />
             ) : jobsData?.jobs && jobsData.jobs.length > 0 ? (
               <>
+                {/* Mobile-only banner ad — top of results */}
+                <div className="block md:hidden mb-4">
+                  <AdUnit slot={AD_SLOTS.banner} size="leaderboard" format="horizontal" />
+                </div>
+
                 <div className="mb-6 flex items-center justify-between flex-wrap gap-2">
                   <p className="text-muted-foreground text-sm">
                     Showing <span className="text-foreground font-semibold">{jobsData.total}</span> results
@@ -249,7 +254,7 @@ export default function JobsPage() {
                   </div>
                   {/* Ad after 3 */}
                   {jobsData.jobs.length > 3 && (
-                    <AdUnit slot="6300978111" size="leaderboard" format="horizontal" />
+                    <AdUnit slot={AD_SLOTS.banner} size="leaderboard" format="horizontal" />
                   )}
                   {/* Next 3 */}
                   {jobsData.jobs.length > 3 && (
@@ -261,7 +266,7 @@ export default function JobsPage() {
                   )}
                   {/* Ad after 6 */}
                   {jobsData.jobs.length > 6 && (
-                    <AdUnit slot="6300978111" size="leaderboard" format="horizontal" />
+                    <AdUnit slot={AD_SLOTS.banner} size="leaderboard" format="horizontal" />
                   )}
                   {/* Next 3 */}
                   {jobsData.jobs.length > 6 && (
@@ -273,7 +278,7 @@ export default function JobsPage() {
                   )}
                   {/* Ad after 9 */}
                   {jobsData.jobs.length > 9 && (
-                    <AdUnit slot="6300978111" size="rectangle" format="rectangle" />
+                    <AdUnit slot={AD_SLOTS.rectangle} size="rectangle" format="rectangle" />
                   )}
                   {/* Remaining cards */}
                   {jobsData.jobs.length > 9 && (

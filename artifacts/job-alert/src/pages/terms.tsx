@@ -5,7 +5,7 @@ import { ShieldCheck, AlertCircle } from "lucide-react";
 const sections = [
   {
     title: "Important Disclaimer",
-    content: `This application is privately developed and operated by Netra Lata. We are not affiliated with, endorsed by, or connected to any official government body. All job information is sourced from publicly available official government websites.`,
+    content: `This application is privately developed and operated by Nohria Labs. We are not affiliated with, endorsed by, or connected to any official government body. All job information is sourced from publicly available official government websites.`,
   },
   {
     title: "Data Sources",
@@ -101,7 +101,7 @@ export default function TermsPage() {
               Terms &amp; Conditions
             </h1>
             <p className="text-white/60 text-sm max-w-xl mx-auto">
-              Last updated: March 2026 &nbsp;·&nbsp; Developed and operated by Netra Lata
+              Last updated: March 2026 &nbsp;·&nbsp; Developed and operated by Nohria Labs
             </p>
           </motion.div>
         </div>
@@ -112,7 +112,7 @@ export default function TermsPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-start gap-3">
           <AlertCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
           <p className="text-sm text-foreground/80">
-            This application is privately developed and operated by <strong>Netra Lata</strong>. We are
+            This application is privately developed and operated by <strong>Nohria Labs</strong>. We are
             not affiliated with, endorsed by, or connected to any official government body. All job
             information is sourced from publicly available official government websites.
           </p>

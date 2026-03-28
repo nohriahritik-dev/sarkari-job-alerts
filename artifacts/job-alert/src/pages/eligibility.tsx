@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle2, AlertCircle, Loader2, UserCheck, BadgeCheck } from "lucide-react";
 import { Layout } from "@/components/layout";
 import { JobCard } from "@/components/job-card";
-import { AdUnit } from "@/components/ad-unit";
+import { AdUnit, AD_SLOTS } from "@/components/ad-unit";
 import { useCheckEligibility, type EligibilityParams } from "@/hooks/use-eligibility";
 import { cn } from "@/lib/utils";
 import { Link } from "wouter";
@@ -177,7 +177,7 @@ export default function EligibilityPage() {
         </div>
 
         {/* Ad between form and results */}
-        <AdUnit slot="6300978111" size="leaderboard" format="horizontal" className="mb-6" />
+        <AdUnit slot={AD_SLOTS.banner} size="leaderboard" format="horizontal" className="mb-6" />
 
         {/* Results */}
         <AnimatePresence>
@@ -253,7 +253,7 @@ export default function EligibilityPage() {
 
                       {data.jobs.length > 6 && (
                         <>
-                          <AdUnit slot="6300978111" size="leaderboard" format="horizontal" className="my-6" />
+                          <AdUnit slot={AD_SLOTS.banner} size="leaderboard" format="horizontal" className="my-6" />
                           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             {data.jobs.slice(6).map((job) => (
                               <JobCard key={job.id} job={job} />

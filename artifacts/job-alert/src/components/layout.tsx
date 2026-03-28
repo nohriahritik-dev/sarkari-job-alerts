@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "@/hooks/use-theme";
 import { StickyAdBar } from "@/components/sticky-ad-bar";
+import { AppDownloadBanner } from "@/components/app-download-banner";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const [location] = useLocation();
@@ -273,8 +274,19 @@ export function Layout({ children }: { children: React.ReactNode }) {
               </p>
             </div>
           </div>
+
+          {/* Legal Disclaimer */}
+          <div className="mt-8 pt-6 border-t border-border border-dashed text-center max-w-4xl mx-auto">
+            <h4 className="text-[11px] uppercase tracking-wider font-bold text-muted-foreground mb-2">
+              Disclaimer
+            </h4>
+            <p className="text-[11px] leading-relaxed text-muted-foreground/80">
+              Sarkari Job Alerts is a private entity and is <strong>NOT associated, affiliated, or registered with any State Government, Central Government, or any official government portal/board</strong>. We collect public information from official websites and employment newspapers strictly for informational purposes. We do not guarantee the completeness or accuracy of any information. Sarkari Job Alerts and its creators shall not be held liable for any loss, damage, or legal consequences arising from the use of the information provided on this website. Users are advised to verify details with the respective official government portals before applying or taking any action.
+            </p>
+          </div>
         </div>
       </footer>
+      <AppDownloadBanner />
     </div>
   );
 }

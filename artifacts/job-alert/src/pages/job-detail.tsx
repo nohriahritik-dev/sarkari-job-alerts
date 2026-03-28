@@ -10,7 +10,7 @@ import { Layout } from "@/components/layout";
 import { LoadingSpinner } from "@/components/ui/loading";
 import { cn, getCategoryColor } from "@/lib/utils";
 import { useBookmarks } from "@/hooks/use-bookmarks";
-import { AdUnit } from "@/components/ad-unit";
+import { AdUnit, AD_SLOTS } from "@/components/ad-unit";
 
 export default function JobDetailPage() {
   const [, params] = useRoute("/jobs/:id");
@@ -157,9 +157,9 @@ export default function JobDetailPage() {
         </div>
       </div>
 
-      {/* Ad — below job header */}
+      {/* Leaderboard Ad — below job header */}
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-        <AdUnit slot="6300978111" size="leaderboard" format="horizontal" />
+        <AdUnit slot={AD_SLOTS.banner} size="leaderboard" format="horizontal" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -167,8 +167,8 @@ export default function JobDetailPage() {
           
           {/* Main Content */}
           <div className="flex-1 space-y-10">
-            {/* Large Billboard Ad — top of main content */}
-            <AdUnit slot="6300978111" size="large" format="rectangle" />
+            {/* Billboard Ad — top of main content */}
+            <AdUnit slot={AD_SLOTS.large} size="large" format="rectangle" />
 
             {/* Description */}
             {cleanDescription && (
@@ -181,6 +181,8 @@ export default function JobDetailPage() {
                     {cleanDescription}
                   </div>
                 </div>
+                {/* In-content ad — after description text, great click intent area */}
+                <AdUnit slot={AD_SLOTS.native} size="inline" format="auto" className="mt-4" />
               </section>
             )}
 
@@ -225,8 +227,8 @@ export default function JobDetailPage() {
               </div>
             </section>
 
-            {/* Ad between eligibility and documents */}
-            <AdUnit slot="6300978111" size="leaderboard" format="horizontal" />
+            {/* Leaderboard Ad — between eligibility and documents */}
+            <AdUnit slot={AD_SLOTS.banner} size="leaderboard" format="horizontal" />
 
             {/* Documents Required */}
             {(job.photoRequirements || job.signatureRequirements) && (
@@ -250,6 +252,10 @@ export default function JobDetailPage() {
                 </div>
               </section>
             )}
+
+            {/* Bottom in-content ad — after document requirements */}
+            <AdUnit slot={AD_SLOTS.rectangle} size="rectangle" format="rectangle" />
+
           </div>
 
           {/* Sidebar */}
@@ -344,8 +350,8 @@ export default function JobDetailPage() {
               </div>
             </div>
 
-            {/* Sidebar Rectangle Ad */}
-            <AdUnit slot="6300978111" size="rectangle" format="rectangle" />
+            {/* Sidebar Rectangle Ad — after Important Dates */}
+            <AdUnit slot={AD_SLOTS.rectangle} size="rectangle" format="rectangle" />
 
             {/* Notification PDF — only show if it's a genuine PDF from official source */}
             {officialPdfUrl ? (

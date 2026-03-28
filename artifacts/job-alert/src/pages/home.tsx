@@ -5,7 +5,7 @@ import {
   FlaskConical, Stethoscope, GraduationCap, Scale, Shield, Wrench, Code2,
   Banknote, Building2, HardHat, FileText, Factory, Hammer, BookOpen,
   ShieldCheck, Landmark, School, HeartPulse, Train, TreePine, Lock,
-  Trophy, MoreHorizontal, RefreshCw, type LucideIcon
+  Trophy, MoreHorizontal, RefreshCw, Bell, type LucideIcon
 } from "lucide-react";
 import { formatDistanceToNow } from "date-fns";
 import { useGetJobs, useGetJobCount, useGetClosingSoonJobs, useGetCategories } from "@workspace/api-client-react";
@@ -14,7 +14,8 @@ import { JobCard } from "@/components/job-card";
 import { LoadingSpinner } from "@/components/ui/loading";
 import { getCategoryColor, cn } from "@/lib/utils";
 import { useState } from "react";
-import { AdUnit } from "@/components/ad-unit";
+import { AdUnit, AD_SLOTS } from "@/components/ad-unit";
+import { NewUpdatesSection } from "@/components/new-updates-section";
 
 const CATEGORY_ICONS: Record<string, LucideIcon> = {
   "research-science":    FlaskConical,
@@ -126,7 +127,7 @@ export default function Home() {
                 icon: Users,
               },
               { label: "Sectors", value: categories?.length ? `${categories.length}` : "24", icon: Filter },
-              { label: "Data Refresh", value: "4 Hrs", icon: TrendingUp },
+              { label: "Fastest Notification", value: "Instant", icon: Bell },
               { label: "Verified Sources", value: "100%", icon: CheckCircle2 },
             ].map((stat, i) => (
               <div key={i} className="hero-glass p-4 rounded-2xl flex flex-col items-center justify-center text-center">
@@ -145,9 +146,9 @@ export default function Home() {
               transition={{ delay: 0.5 }}
               className="flex items-center justify-center gap-2 mt-4 text-xs text-white/40"
             >
-              <RefreshCw className="w-3 h-3" />
+              <Bell className="w-3 h-3" />
               <span>
-                Data refreshes every 4 hours · Last updated{" "}
+                Instant job alerts · Last updated{" "}
                 {formatDistanceToNow(new Date(countData.lastUpdated), { addSuffix: true })}
               </span>
             </motion.div>
@@ -157,13 +158,13 @@ export default function Home() {
 
       {/* Ad — below hero, above categories */}
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <AdUnit slot="6300978111" size="leaderboard" format="horizontal" />
+        <AdUnit slot={AD_SLOTS.banner} size="leaderboard" format="horizontal" />
       </div>
 
-      {/* Ad — between hero stats and categories */}
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-        <AdUnit slot="6300978111" size="leaderboard" format="horizontal" />
-      </div>
+      {/* New Updates Section */}
+      {!!latestJobs?.jobs?.length && (
+        <NewUpdatesSection jobs={latestJobs.jobs} />
+      )}
 
       {/* Categories */}
       <section className="py-16 bg-card/30 border-y border-border">
@@ -201,7 +202,7 @@ export default function Home() {
 
       {/* Ad — between categories and closing soon */}
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <AdUnit slot="6300978111" size="rectangle" format="rectangle" />
+        <AdUnit slot={AD_SLOTS.rectangle} size="rectangle" format="rectangle" />
       </div>
 
       {/* Closing Soon Strip */}
@@ -233,7 +234,7 @@ export default function Home() {
 
       {/* Ad — between Closing Soon and Latest Jobs */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-4">
-        <AdUnit slot="6300978111" size="leaderboard" format="horizontal" />
+        <AdUnit slot={AD_SLOTS.banner} size="leaderboard" format="horizontal" />
       </div>
 
       {/* Latest Jobs */}
@@ -267,6 +268,11 @@ export default function Home() {
           )}
         </div>
       </section>
+
+      {/* Ad — below Latest Jobs, above App Download / Footer */}
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <AdUnit slot={AD_SLOTS.large} size="large" format="horizontal" />
+      </div>
 
     </Layout>
   );

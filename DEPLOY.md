@@ -85,3 +85,19 @@ Open <http://localhost:5173> — everything works without any env vars.
 | Vercel  | 100 GB bandwidth/mo, unlimited deployments |
 | Render  | 750 hrs/mo (1 free service), sleeps after 15 min idle |
 | Neon    | 0.5 GB storage, 190 hrs compute/mo |
+
+---
+
+## Keeping the API Awake (Render Free Tier)
+
+Render's free tier services spin down after 15 minutes of inactivity. To keep your API responsive and avoid "cold start" delays, you can use a free monitoring service like [cron-job.org](https://cron-job.org).
+
+1.  **Sign up** for a free account at [cron-job.org](https://cron-job.org).
+2.  **Create a new Cronjob**:
+    - **Name**: `Keep Awake (Sarkari API)`
+    - **URL**: `https://sarkari-job-alert-api.onrender.com/api/healthz` (Use **HTTPS**)
+    - **Execution Schedule**: Every 14 minutes.
+3.  **Save** and ensure it is active.
+
+> [!TIP]
+> Always use `https://` in the cron job URL. Using `http://` will cause a 301 redirect which might lead to failures on some monitoring services.
